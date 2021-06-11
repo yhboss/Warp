@@ -1,4 +1,3 @@
-## 编辑未完成，图片文字排版更新中。。后续将支持centos与debain系统，并不再让大家输入ip地址！
 
 ## 针对KVM架构VPS的WARP一键综合脚本
 - [x] 支持自动识别X86与ARM的CPU架构
@@ -21,10 +20,7 @@
 
 * [相关附加说明](#相关附加说明)
 -----------------------------------------------------------------------------------------
-### 相关视频教程及项目
-
-- [纯IPV4 VPS添加WARP 如何查看专用IP地址](https://youtu.be/o7e_ikV-m-g)
-- [甲骨文添加真IPV6，如何选择WARP脚本看奈非](https://youtu.be/ap_krqWnikE)
+### 相关脚本
 - [EUserv 纯ipv6(OpenVZ、LXC架构VPS)WARP项目](https://github.com/YG-tsj/EUserv-warp)
 ---------------------------------------------------------------------------------------------
 ### root一键脚本
@@ -36,13 +32,13 @@
 - **脚本一：适用于纯IPV4 VPS与IPV4+IPV6双栈VPS，非root状态下直接输入以下脚本**
 
 ```
-bash <(curl -sSL https://raw.githubusercontent.com/YG-tsj/Oracle-warp/main/root.sh)
+bash <(curl -sSL https://raw.githubusercontent.com/xOS/Warp/main/root.sh)
 ```
 
 - **脚本二：适用于纯IPV6 VPS，先执行```sudo -i```进入root模式后再输入以下脚本（已集成永久DNS64）**
 
 ```
-echo -e nameserver 2a00:1098:2c::1 > /etc/resolv.conf && bash <(curl -sSL https://raw.githubusercontent.com/YG-tsj/Oracle-warp/main/v6root.sh)
+echo -e nameserver 2a00:1098:2c::1 > /etc/resolv.conf && bash <(curl -sSL https://raw.githubusercontent.com/xOS/Warp/main/v6root.sh)
 ```
 
 -----------------------------------------------------------------------------------------
@@ -98,7 +94,7 @@ echo -e nameserver 2a00:1098:2c::1 > /etc/resolv.conf && bash <(curl -sSL https:
 - **脚本一：支持X86/ARM架构的纯IPV4 VPS与IPV4+IPV6双栈VPS**
 
 ```
-wget -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/Oracle-warp/main/multiV464.sh && chmod +x multiV464.sh && ./multiV464.sh
+wget -N --no-check-certificate https://raw.githubusercontent.com/xOS/Warp/main/multiV464.sh && chmod +x multiV464.sh && ./multiV464.sh
 ```
 
 进入脚本快捷方式 ```bash ~/multiV464.sh```
@@ -108,7 +104,7 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/Oracle-w
 
 - 如未执行上面的root一键脚本，先执行```sudo -i```进入root模式，后执行```echo -e nameserver 2a00:1098:2c::1 > /etc/resolv.conf```
 ```
-wget -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/Oracle-warp/main/multiOV6.sh && chmod +x multiOV6.sh && ./multiOV6.sh
+wget -N --no-check-certificate https://raw.githubusercontent.com/xOS/Warp/main/multiOV6.sh && chmod +x multiOV6.sh && ./multiOV6.sh
 ```
 
 纯IPV6建议后续只用快捷方式进入脚本 ```bash ~/multiOV6.sh```
@@ -129,7 +125,7 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/Oracle-w
 
 更新完成后将自动断开VPS连接！
 
-- **三、开启原生BBR加速（秋水逸冰版）：**
+- **三、开启原生BBR加速：**
 
 按任意键即可安装成功，检测BBR是否生效(显示有BBR，说明成功)：lsmod | grep bbr
 
@@ -188,10 +184,18 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/Oracle-w
 - **十、代理协议脚本选择**
 
 支持IPV4/IPV6/X86/ARM的全面脚本 ，推荐！
-mack-a脚本地址：https://github.com/mack-a/v2ray-agent
+Shadowsocks 脚本：
+```bash
+wget -N --no-check-certificate -c -t3 -T60 -O ss-plugins.sh https://git.io/fjlbl
+chmod +x ss-plugins.sh
+./ss-plugins.sh
+```
 
 支持IPV4/IPV6/X86的脚本
-phlinhng脚本地址：https://github.com/phlinhng/v2ray-tcp-tls-web
+Shadowsocks-Go 脚本：
+```bash
+wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubiBackup/doubi/master/ss-go.sh && chmod +x ss-go.sh && bash ss-go.sh
+```
 
 注意：域名解析所填写的IP必须是VPS本地IP，与WARP分配的IP没关系！
 
@@ -275,12 +279,3 @@ wg-quick up wgcf
 
 关闭systemctl disable wg-quick@wgcf
 
-感谢P3terx大及原创者们，参考来源：
-
-https://p3terx.com/archives/debian-linux-vps-server-wireguard-installation-tutorial.html
-
-https://p3terx.com/archives/use-cloudflare-warp-to-add-extra-ipv4-or-ipv6-network-support-to-vps-servers-for-free.html
-
-https://luotianyi.vc/5252.html
-
-https://hiram.wang/cloudflare-wrap-vps/
