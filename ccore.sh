@@ -20,7 +20,7 @@ bit=`uname -m`
 version=`uname -r | awk -F "-" '{print $1}'`
 virt=`virt-what`
 
-yellow " VPS小鸡内脏检测结果如下："
+yellow " VPS内核检测结果如下："
 
 yellow " 系统内核版本 - $version " 
 yellow " CPU架构名称 - $bit "

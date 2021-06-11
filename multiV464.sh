@@ -37,7 +37,8 @@ echo | wgcf register
 wgcf generate
 sed -i 's/engage.cloudflareclient.com/162.159.192.1/g' wgcf-profile.conf
 sed -i '/0\.0\.0\.0\/0/d' wgcf-profile.conf
-sed -i 's/1.1.1.1/9.9.9.9,8.8.8.8/g' wgcf-profile.conf
+sed -i 's/1.1.1.1/8.8.8.8,8.8.4.4,2001:4860:4860::8888,2001:4860:4860::8844/g' wgcf-profile.conf
+grep -qE '^[ ]*label[ ]*2002::/16[ ]*2' /etc/gai.conf || echo 'label 2002::/16   2' | sudo tee -a /etc/gai.conf
 cp wgcf-account.toml /etc/wireguard/wgcf-account.toml
 cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
@@ -70,8 +71,7 @@ sed -i '5 s/^/PostUp = ip -4 rule add from eu6 table main\n/' wgcf-profile.conf
 sed -i '6 s/^/PostDown = ip -4 rule delete from eu6 table main\n/' wgcf-profile.conf
 read -p "粘贴（VPS专用IP地址）:" eu6
 sed -i "s#eu6#$eu6#g" wgcf-profile.conf
-sed -i 's/engage.cloudflareclient.com/162.159.192.1/g' wgcf-profile.conf
-sed -i 's/1.1.1.1/9.9.9.9,8.8.8.8/g' wgcf-profile.conf
+sed -i 's/1.1.1.1/8.8.8.8,8.8.4.4,2001:4860:4860::8888,2001:4860:4860::8844/g' wgcf-profile.conf
 cp wgcf-account.toml /etc/wireguard/wgcf-account.toml
 cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
@@ -104,9 +104,10 @@ sed -i '5 s/^/PostUp = ip -4 rule add from eu6 table main\n/' wgcf-profile.conf
 sed -i '6 s/^/PostDown = ip -4 rule delete from eu6 table main\n/' wgcf-profile.conf
 read -p "粘贴（VPS专用IP地址）:" eu6
 sed -i "s#eu6#$eu6#g" wgcf-profile.conf
-sed -i 's/engage.cloudflareclient.com/162.159.192.1/g' wgcf-profile.conf
+sed -i 's/engage.cloudflareclient.com/ [2606:4700:d0::a29f:c001]/g' wgcf-profile.conf
 sed -i '/\:\:\/0/d' wgcf-profile.conf
-sed -i 's/1.1.1.1/9.9.9.9,8.8.8.8/g' wgcf-profile.conf
+sed -i 's/1.1.1.1/2001:4860:4860::8888,2001:4860:4860::8844,8.8.8.8,8.8.4.4/g' wgcf-profile.conf
+grep -qE '^[ ]*precedence[ ]*::ffff:0:0/96[ ]*100' /etc/gai.conf || echo 'precedence ::ffff:0:0/96  100' | sudo tee -a /etc/gai.conf
 cp wgcf-account.toml /etc/wireguard/wgcf-account.toml
 cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
@@ -140,7 +141,9 @@ sed -i '6 s/^/PostDown = ip -6 rule delete from eu6 table main\n/' wgcf-profile.
 read -p "粘贴（VPS本地IPV6地址）:" eu6
 sed -i "s#eu6#$eu6#g" wgcf-profile.conf
 sed -i '/0\.0\.0\.0\/0/d' wgcf-profile.conf
-sed -i 's/1.1.1.1/9.9.9.9,8.8.8.8/g' wgcf-profile.conf
+sed -i 's/engage.cloudflareclient.com/162.159.192.1/g' wgcf-profile.conf
+sed -i 's/1.1.1.1/8.8.8.8,8.8.4.4,2001:4860:4860::8888,2001:4860:4860::8844/g' wgcf-profile.conf
+grep -qE '^[ ]*label[ ]*2002::/16[ ]*2' /etc/gai.conf || echo 'label 2002::/16   2' | sudo tee -a /etc/gai.conf
 cp wgcf-account.toml /etc/wireguard/wgcf-account.toml
 cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
@@ -177,7 +180,7 @@ sed -i '7 s/^/PostUp = ip -6 rule add from eu6 table main\n/' wgcf-profile.conf
 sed -i '8 s/^/PostDown = ip -6 rule delete from eu6 table main\n/' wgcf-profile.conf
 read -p "粘贴（VPS本地IPV6地址）:" eu6
 sed -i "s#eu6#$eu6#g" wgcf-profile.conf
-sed -i 's/1.1.1.1/9.9.9.9,8.8.8.8/g' wgcf-profile.conf
+sed -i 's/1.1.1.1/8.8.8.8,8.8.4.4,2001:4860:4860::8888,2001:4860:4860::8844/g' wgcf-profile.conf
 cp wgcf-account.toml /etc/wireguard/wgcf-account.toml
 cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
@@ -211,7 +214,9 @@ sed -i '6 s/^/PostDown = ip -4 rule delete from eu6 table main\n/' wgcf-profile.
 read -p "粘贴（VPS专用IP地址）:" eu6
 sed -i "s#eu6#$eu6#g" wgcf-profile.conf
 sed -i '/\:\:\/0/d' wgcf-profile.conf
-sed -i 's/1.1.1.1/9.9.9.9,8.8.8.8/g' wgcf-profile.conf
+sed -i 's/engage.cloudflareclient.com/ [2606:4700:d0::a29f:c001]/g' wgcf-profile.conf
+sed -i 's/1.1.1.1/2001:4860:4860::8888,2001:4860:4860::8844,8.8.8.8,8.8.4.4/g' wgcf-profile.conf
+grep -qE '^[ ]*precedence[ ]*::ffff:0:0/96[ ]*100' /etc/gai.conf || echo 'precedence ::ffff:0:0/96  100' | sudo tee -a /etc/gai.conf
 cp wgcf-account.toml /etc/wireguard/wgcf-account.toml
 cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
@@ -241,7 +246,7 @@ sudo reboot
 }
 
 function BBR(){
-wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh
+wget --no-check-certificate https://raw.githubusercontent.com/cx9208/Linux-NetSpeed/master/tcp.sh && chmod +x tcp.sh && ./tcp.sh
 }
 
 function cwarp(){
@@ -254,12 +259,14 @@ systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 }
 
-function macka(){
-wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/mack-a/v2ray-agent/master/install.sh" && chmod 700 /root/install.sh && /root/install.sh
+function ssgo(){
+wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubiBackup/doubi/master/ss-go.sh && chmod +x ss-go.sh && bash ss-go.sh
 }
 
-function phlinhng(){
-curl -fsSL https://raw.staticdn.net/phlinhng/v2ray-tcp-tls-web/main/src/xwall.sh -o ~/xwall.sh && bash ~/xwall.sh
+function ss(){
+wget -N --no-check-certificate -c -t3 -T60 -O ss-plugins.sh https://git.io/fjlbl
+chmod +x ss-plugins.sh
+./ss-plugins.sh
 }
 
 function ipv4(){
@@ -279,7 +286,7 @@ sudo reboot
 }
 
 function dns(){
-echo 'DNS=9.9.9.9 8.8.8.8'>> /etc/systemd/resolved.conf
+echo 'DNS=8.8.8.8 1.1.1.1'>> /etc/systemd/resolved.conf
 systemctl restart systemd-resolved
 systemctl enable systemd-resolved
 mv /etc/resolv.conf  /etc/resolv.conf.bak
@@ -292,13 +299,12 @@ systemctl status wg-quick@wgcf
 }
 
 function up(){
-wget -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/Oracle-warp/main/multiX86.sh && chmod +x multiX86.sh && ./multiX86.sh
+wget -N --no-check-certificate https://raw.githubusercontent.com/xOS/Warp/main/multiV464.sh && chmod +x multiV464.sh && ./multiV464.sh
 }
 
 #主菜单
 function start_menu(){
     clear
-    red " 详细说明 https://github.com/YG-tsj/Oracle-warp  YouTube频道：甬哥探世界 " 
     
     red " 围绕WARP功能的脚本，目前仅支持KVM X86架构/Ubuntu 20.04系统，还在优化添加新功能中…… "  
     
@@ -350,9 +356,9 @@ function start_menu(){
     
     yellow " ========================三、代理协议脚本选择（更新中）==========================================="
     
-    yellow " 18.使用mack-a脚本（支持Xray, V2ray, Trojan-go） "
+    yellow " 18.安装 ss-go "
     
-    yellow " 19.使用phlinhng脚本（支持Xray, Trojan-go, SS+v2ray-plugin） "
+    yellow " 19.安装 ss "
     
     yellow " ==============================================================================================="
     
@@ -416,10 +422,10 @@ function start_menu(){
            up
 	;;
 	18 )
-           macka
+           ssgo
 	;;
 	19 )
-           phlinhng
+           ss
 	;;
 	20 )
            reboot
@@ -462,14 +468,15 @@ fi
 
 apt update
 apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
-wget -N https://github.com/YG-tsj/Oracle-warp/raw/main/wgcf
+wget -N https://github.com/xOS/Warp/raw/main/wgcf
 cp wgcf /usr/local/bin/wgcf
 chmod +x /usr/local/bin/wgcf
 echo | wgcf register
 wgcf generate
 sed -i 's/engage.cloudflareclient.com/162.159.192.1/g' wgcf-profile.conf
 sed -i '/0\.0\.0\.0\/0/d' wgcf-profile.conf
-sed -i 's/1.1.1.1/9.9.9.9,8.8.8.8/g' wgcf-profile.conf
+sed -i 's/1.1.1.1/8.8.8.8,8.8.4.4,2001:4860:4860::8888,2001:4860:4860::8844/g' wgcf-profile.conf
+grep -qE '^[ ]*label[ ]*2002::/16[ ]*2' /etc/gai.conf || echo 'label 2002::/16   2' | sudo tee -a /etc/gai.conf
 cp wgcf-account.toml /etc/wireguard/wgcf-account.toml
 cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
@@ -493,7 +500,7 @@ fi
 
 apt update
 apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
-wget -N https://github.com/YG-tsj/Oracle-warp/raw/main/wgcf
+wget -N https://github.com/xOS/Warp/raw/main/wgcf
 cp wgcf /usr/local/bin/wgcf
 chmod +x /usr/local/bin/wgcf
 echo | wgcf register
@@ -502,8 +509,7 @@ sed -i '5 s/^/PostUp = ip -4 rule add from eu6 table main\n/' wgcf-profile.conf
 sed -i '6 s/^/PostDown = ip -4 rule delete from eu6 table main\n/' wgcf-profile.conf
 read -p "粘贴（VPS专用IP地址）:" eu6
 sed -i "s#eu6#$eu6#g" wgcf-profile.conf
-sed -i 's/engage.cloudflareclient.com/162.159.192.1/g' wgcf-profile.conf
-sed -i 's/1.1.1.1/9.9.9.9,8.8.8.8/g' wgcf-profile.conf
+sed -i 's/1.1.1.1/8.8.8.8,8.8.4.4,2001:4860:4860::8888,2001:4860:4860::8844/g' wgcf-profile.conf
 cp wgcf-account.toml /etc/wireguard/wgcf-account.toml
 cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
@@ -527,7 +533,7 @@ fi
 
 apt update
 apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
-wget -N https://github.com/YG-tsj/Oracle-warp/raw/main/wgcf
+wget -N https://github.com/xOS/Warp/raw/main/wgcf
 cp wgcf /usr/local/bin/wgcf
 chmod +x /usr/local/bin/wgcf
 echo | wgcf register
@@ -536,9 +542,10 @@ sed -i '5 s/^/PostUp = ip -4 rule add from eu6 table main\n/' wgcf-profile.conf
 sed -i '6 s/^/PostDown = ip -4 rule delete from eu6 table main\n/' wgcf-profile.conf
 read -p "粘贴（VPS专用IP地址）:" eu6
 sed -i "s#eu6#$eu6#g" wgcf-profile.conf
-sed -i 's/engage.cloudflareclient.com/162.159.192.1/g' wgcf-profile.conf
 sed -i '/\:\:\/0/d' wgcf-profile.conf
-sed -i 's/1.1.1.1/9.9.9.9,8.8.8.8/g' wgcf-profile.conf
+sed -i 's/engage.cloudflareclient.com/ [2606:4700:d0::a29f:c001]/g' wgcf-profile.conf
+sed -i 's/1.1.1.1/2001:4860:4860::8888,2001:4860:4860::8844,8.8.8.8,8.8.4.4/g' wgcf-profile.conf
+grep -qE '^[ ]*precedence[ ]*::ffff:0:0/96[ ]*100' /etc/gai.conf || echo 'precedence ::ffff:0:0/96  100' | sudo tee -a /etc/gai.conf
 cp wgcf-account.toml /etc/wireguard/wgcf-account.toml
 cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
@@ -562,7 +569,7 @@ fi
 
 apt update
 apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
-wget -N https://github.com/YG-tsj/Oracle-warp/raw/main/wgcf
+wget -N https://github.com/xOS/Warp/raw/main/wgcf
 cp wgcf /usr/local/bin/wgcf
 chmod +x /usr/local/bin/wgcf
 echo | wgcf register
@@ -572,7 +579,9 @@ sed -i '6 s/^/PostDown = ip -6 rule delete from eu6 table main\n/' wgcf-profile.
 read -p "粘贴（VPS本地IPV6地址）:" eu6
 sed -i "s#eu6#$eu6#g" wgcf-profile.conf
 sed -i '/0\.0\.0\.0\/0/d' wgcf-profile.conf
-sed -i 's/1.1.1.1/9.9.9.9,8.8.8.8/g' wgcf-profile.conf
+sed -i 's/engage.cloudflareclient.com/162.159.192.1/g' wgcf-profile.conf
+sed -i 's/1.1.1.1/8.8.8.8,8.8.4.4,2001:4860:4860::8888,2001:4860:4860::8844/g' wgcf-profile.conf
+grep -qE '^[ ]*label[ ]*2002::/16[ ]*2' /etc/gai.conf || echo 'label 2002::/16   2' | sudo tee -a /etc/gai.conf
 cp wgcf-account.toml /etc/wireguard/wgcf-account.toml
 cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
@@ -596,7 +605,7 @@ fi
 
 apt update
 apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
-wget -N https://github.com/YG-tsj/Oracle-warp/raw/main/wgcf
+wget -N https://github.com/xOS/Warp/raw/main/wgcf
 cp wgcf /usr/local/bin/wgcf
 chmod +x /usr/local/bin/wgcf
 echo | wgcf register
@@ -609,7 +618,7 @@ sed -i '7 s/^/PostUp = ip -6 rule add from eu6 table main\n/' wgcf-profile.conf
 sed -i '8 s/^/PostDown = ip -6 rule delete from eu6 table main\n/' wgcf-profile.conf
 read -p "粘贴（VPS本地IPV6地址）:" eu6
 sed -i "s#eu6#$eu6#g" wgcf-profile.conf
-sed -i 's/1.1.1.1/9.9.9.9,8.8.8.8/g' wgcf-profile.conf
+sed -i 's/1.1.1.1/8.8.8.8,8.8.4.4,2001:4860:4860::8888,2001:4860:4860::8844/g' wgcf-profile.conf
 cp wgcf-account.toml /etc/wireguard/wgcf-account.toml
 cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
@@ -633,7 +642,7 @@ fi
 
 apt update
 apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
-wget -N https://github.com/YG-tsj/Oracle-warp/raw/main/wgcf
+wget -N https://github.com/xOS/Warp/raw/main/wgcf
 cp wgcf /usr/local/bin/wgcf
 chmod +x /usr/local/bin/wgcf
 echo | wgcf register
@@ -643,7 +652,9 @@ sed -i '6 s/^/PostDown = ip -4 rule delete from eu6 table main\n/' wgcf-profile.
 read -p "粘贴（VPS专用IP地址）:" eu6
 sed -i "s#eu6#$eu6#g" wgcf-profile.conf
 sed -i '/\:\:\/0/d' wgcf-profile.conf
-sed -i 's/1.1.1.1/9.9.9.9,8.8.8.8/g' wgcf-profile.conf
+sed -i 's/engage.cloudflareclient.com/ [2606:4700:d0::a29f:c001]/g' wgcf-profile.conf
+sed -i 's/1.1.1.1/2001:4860:4860::8888,2001:4860:4860::8844,8.8.8.8,8.8.4.4/g' wgcf-profile.conf
+grep -qE '^[ ]*precedence[ ]*::ffff:0:0/96[ ]*100' /etc/gai.conf || echo 'precedence ::ffff:0:0/96  100' | sudo tee -a /etc/gai.conf
 cp wgcf-account.toml /etc/wireguard/wgcf-account.toml
 cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
@@ -677,12 +688,14 @@ systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 }
 
-function macka(){
-wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/mack-a/v2ray-agent/master/install.sh" && chmod 700 /root/install.sh && /root/install.sh
+function ssgo(){
+wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubiBackup/doubi/master/ss-go.sh && chmod +x ss-go.sh && bash ss-go.sh
 }
 
-function phlinhng(){
-curl -fsSL https://raw.staticdn.net/phlinhng/v2ray-tcp-tls-web/main/src/xwall.sh -o ~/xwall.sh && bash ~/xwall.sh
+function ss(){
+wget -N --no-check-certificate -c -t3 -T60 -O ss-plugins.sh https://git.io/fjlbl
+chmod +x ss-plugins.sh
+./ss-plugins.sh
 }
 
 function ipv4(){
@@ -702,7 +715,7 @@ sudo reboot
 }
 
 function dns(){
-echo 'DNS=9.9.9.9 8.8.8.8'>> /etc/systemd/resolved.conf
+echo 'DNS=8.8.8.8 1.1.1.1'>> /etc/systemd/resolved.conf
 systemctl restart systemd-resolved
 systemctl enable systemd-resolved
 mv /etc/resolv.conf  /etc/resolv.conf.bak
@@ -725,13 +738,12 @@ systemctl status wg-quick@wgcf
 }
 
 function up(){
-wget -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/Oracle-warp/main/multiARM.sh && chmod +x multiARM.sh && ./multiARM.sh
+wget -N --no-check-certificate https://raw.githubusercontent.com/xOS/Warp/main/multiV464.sh && chmod +x multiV464.sh && ./multiV464.sh
 }
 
 #主菜单
 function start_menu(){
     clear
-    red " 详细说明 https://github.com/YG-tsj/Oracle-warp  YouTube频道：甬哥探世界 " 
     
     red " 围绕WARP功能的脚本，目前仅支持KVM ARM架构/Ubuntu 20.04系统，还在优化添加新功能中…… "  
     
@@ -783,7 +795,7 @@ function start_menu(){
     
     yellow " ========================三、代理协议脚本选择（更新中）==========================================="
     
-    yellow " 18.使用mack-a脚本（支持ARM架构VPS，支持协议：Xray, V2ray, Trojan-go） "
+    yellow " 18.安装 ss（支持ARM架构VPS） "
     
     yellow " ==============================================================================================="
     
@@ -847,7 +859,7 @@ function start_menu(){
            up
 	;;
 	18 )
-           macka
+           ss
 	;;
 	19 )
            reboot

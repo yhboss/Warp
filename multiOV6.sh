@@ -19,7 +19,7 @@ blue(){
 
 
 function BBR(){
-wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh
+wget --no-check-certificate https://raw.githubusercontent.com/cx9208/Linux-NetSpeed/master/tcp.sh && chmod +x tcp.sh && ./tcp.sh
 }
 
 function cwarp(){
@@ -33,12 +33,14 @@ systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 }
 
-function macka(){
-wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/mack-a/v2ray-agent/master/install.sh" && chmod 700 /root/install.sh && /root/install.sh
+function ssgo(){
+wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubiBackup/doubi/master/ss-go.sh && chmod +x ss-go.sh && bash ss-go.sh
 }
 
-function phlinhng(){
-curl -fsSL https://raw.staticdn.net/phlinhng/v2ray-tcp-tls-web/main/src/xwall.sh -o ~/xwall.sh && bash ~/xwall.sh
+function ss(){
+wget -N --no-check-certificate -c -t3 -T60 -O ss-plugins.sh https://git.io/fjlbl
+chmod +x ss-plugins.sh
+./ss-plugins.sh
 }
 
 function ipv4(){
@@ -98,7 +100,7 @@ wgcf generate
 sed -i "5 s/^/PostUp = ip -6 rule add from $(wget -qO- ipv6.ip.sb) table main\n/" wgcf-profile.conf
 sed -i "6 s/^/PostDown = ip -6 rule delete from $(wget -qO- ipv6.ip.sb) table main\n/" wgcf-profile.conf
 sed -i 's/engage.cloudflareclient.com/2606:4700:d0::a29f:c001/g' wgcf-profile.conf
-sed -i 's/1.1.1.1/9.9.9.9,8.8.8.8/g' wgcf-profile.conf
+sed -i 's/1.1.1.1/2001:4860:4860::8888,2001:4860:4860::8844,8.8.8.8,8.8.4.4/g' wgcf-profile.conf
 cp wgcf-account.toml /etc/wireguard/wgcf-account.toml
 cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
@@ -129,7 +131,7 @@ echo | wgcf register
 wgcf generate
 sed -i 's/engage.cloudflareclient.com/2606:4700:d0::a29f:c001/g' wgcf-profile.conf
 sed -i '/\:\:\/0/d' wgcf-profile.conf
-sed -i 's/1.1.1.1/9.9.9.9,8.8.8.8/g' wgcf-profile.conf
+sed -i 's/1.1.1.1/2001:4860:4860::8888,2001:4860:4860::8844,8.8.8.8,8.8.4.4/g' wgcf-profile.conf
 cp wgcf-account.toml /etc/wireguard/wgcf-account.toml
 cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
@@ -145,18 +147,17 @@ systemctl status wg-quick@wgcf
 }
 
 function 6x86(){
-wget -6 -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/Oracle-warp/main/V6ARM.sh && chmod +x V6ARM.sh && ./V6ARM.sh
+wget -6 -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/Oracle-warp/main/multiOV6.sh && chmod +x multiOV6.sh && ./multiOV6.sh
 }
 
 function 4x86(){
-wget -4 -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/Oracle-warp/main/V6ARM.sh && chmod +x V6ARM.sh && ./V6ARM.sh
+wget -4 -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/Oracle-warp/main/multiOV6.sh && chmod +x multiOV6.sh && ./multiOV6.sh
 }
 
 #主菜单
 function start_menu(){
     clear
-    red " 详细说明 https://github.com/YG-tsj/Oracle-warp  YouTube频道：甬哥探世界 " 
-    
+
     red " 围绕WARP功能的脚本，目前仅支持KVM X86架构的纯IPV6 /Ubuntu 20.04系统，还在优化添加新功能中…… "  
     
     red " ==============================================================================================" 
@@ -199,7 +200,7 @@ function start_menu(){
     
     yellow " ==========================三、代理协议脚本选择（更新中）==========================================="
     
-    yellow " 14. 使用mack-a脚本（支持协议：Xray, V2ray, Trojan-go） "
+    yellow " 14. 安装 Shadowsocks-Go "
     
     yellow " ==============================================================================================="
     
@@ -252,7 +253,7 @@ function start_menu(){
            ipv6
 	;;
 	14 )
-           macka
+           ssgo
 	;;
 	15 )
            reboot
@@ -284,7 +285,7 @@ blue(){
 
 
 function BBR(){
-wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh
+wget --no-check-certificate https://raw.githubusercontent.com/cx9208/Linux-NetSpeed/master/tcp.sh && chmod +x tcp.sh && ./tcp.sh
 }
 
 function cwarp(){
@@ -298,12 +299,14 @@ systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 }
 
-function macka(){
-wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/mack-a/v2ray-agent/master/install.sh" && chmod 700 /root/install.sh && /root/install.sh
+function ssgo(){
+wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubiBackup/doubi/master/ss-go.sh && chmod +x ss-go.sh && bash ss-go.sh
 }
 
-function phlinhng(){
-curl -fsSL https://raw.staticdn.net/phlinhng/v2ray-tcp-tls-web/main/src/xwall.sh -o ~/xwall.sh && bash ~/xwall.sh
+function ss(){
+wget -N --no-check-certificate -c -t3 -T60 -O ss-plugins.sh https://git.io/fjlbl
+chmod +x ss-plugins.sh
+./ss-plugins.sh
 }
 
 function ipv4(){
@@ -363,7 +366,7 @@ wgcf generate
 sed -i "5 s/^/PostUp = ip -6 rule add from $(wget -qO- ipv6.ip.sb) table main\n/" wgcf-profile.conf
 sed -i "6 s/^/PostDown = ip -6 rule delete from $(wget -qO- ipv6.ip.sb) table main\n/" wgcf-profile.conf
 sed -i 's/engage.cloudflareclient.com/2606:4700:d0::a29f:c001/g' wgcf-profile.conf
-sed -i 's/1.1.1.1/9.9.9.9,8.8.8.8/g' wgcf-profile.conf
+sed -i 's/1.1.1.1/2001:4860:4860::8888,2001:4860:4860::8844,8.8.8.8,8.8.4.4/g' wgcf-profile.conf
 cp wgcf-account.toml /etc/wireguard/wgcf-account.toml
 cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
@@ -394,7 +397,7 @@ echo | wgcf register
 wgcf generate
 sed -i 's/engage.cloudflareclient.com/2606:4700:d0::a29f:c001/g' wgcf-profile.conf
 sed -i '/\:\:\/0/d' wgcf-profile.conf
-sed -i 's/1.1.1.1/9.9.9.9,8.8.8.8/g' wgcf-profile.conf
+sed -i 's/1.1.1.1/2001:4860:4860::8888,2001:4860:4860::8844,8.8.8.8,8.8.4.4/g' wgcf-profile.conf
 cp wgcf-account.toml /etc/wireguard/wgcf-account.toml
 cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
@@ -410,18 +413,17 @@ systemctl status wg-quick@wgcf
 }
 
 function 6arm(){
-wget -6 -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/Oracle-warp/main/V6ARM.sh && chmod +x V6ARM.sh && ./V6ARM.sh
+wget -6 -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/Oracle-warp/main/multiOV6.sh && chmod +x multiOV6.sh && ./multiOV6.sh
 }
 
 function 4arm(){
-wget -4 -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/Oracle-warp/main/V6ARM.sh && chmod +x V6ARM.sh && ./V6ARM.sh
+wget -4 -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/Oracle-warp/main/multiOV6.sh && chmod +x multiOV6.sh && ./multiOV6.sh
 }
 
 #主菜单
 function start_menu(){
     clear
-    red " 详细说明 https://github.com/YG-tsj/Oracle-warp  YouTube频道：甬哥探世界 " 
-    
+
     red " 围绕WARP功能的脚本，目前仅支持KVM ARM架构的纯IPV6 /Ubuntu 20.04系统，还在优化添加新功能中…… "  
     
     red " ==============================================================================================" 
@@ -464,7 +466,7 @@ function start_menu(){
     
     yellow " =====================三、支持ARM架构的代理协议脚本选择（更新中）==========================================="
     
-    yellow " 14.使用mack-a脚本（支持协议：Xray, V2ray, Trojan-go） "
+    yellow " 14.安装 Shadowsocks "
     
     yellow " ==============================================================================================="
     
@@ -516,7 +518,7 @@ function start_menu(){
            ipv6
 	;;
 	14 )
-           macka
+           ss
 	;;
 	15 )
            reboot
