@@ -183,16 +183,14 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/xOS/Warp/main/m
 
 - **十、代理协议脚本选择**
 
-支持IPV4/IPV6/X86/ARM的全面脚本 ，推荐！
-Shadowsocks 脚本：
+支持IPV4/IPV6/X86/ARM的 Shadowsocks 脚本：
 ```bash
 wget -N --no-check-certificate -c -t3 -T60 -O ss-plugins.sh https://git.io/fjlbl
 chmod +x ss-plugins.sh
 ./ss-plugins.sh
 ```
 
-支持IPV4/IPV6/X86的脚本
-Shadowsocks-Go 脚本：
+支持IPV4/IPV6/X86的 Shadowsocks-Go 脚本：
 ```bash
 wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubiBackup/doubi/master/ss-go.sh && chmod +x ss-go.sh && bash ss-go.sh
 ```
