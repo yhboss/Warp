@@ -147,11 +147,11 @@ systemctl status wg-quick@wgcf
 }
 
 function 6x86(){
-wget -6 -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/Oracle-warp/main/multiOV6.sh && chmod +x multiOV6.sh && ./multiOV6.sh
+wget -6 -N --no-check-certificate https://raw.githubusercontent.com/xOS/Warp/main/multiOV6.sh && chmod +x multiOV6.sh && ./multiOV6.sh
 }
 
 function 4x86(){
-wget -4 -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/Oracle-warp/main/multiOV6.sh && chmod +x multiOV6.sh && ./multiOV6.sh
+wget -4 -N --no-check-certificate https://raw.githubusercontent.com/xOS/Warp/main/multiOV6.sh && chmod +x multiOV6.sh && ./multiOV6.sh
 }
 
 #主菜单
@@ -160,12 +160,14 @@ function start_menu(){
 
     red " 围绕WARP功能的脚本，目前仅支持KVM X86架构的纯IPV6 /Ubuntu 20.04系统，还在优化添加新功能中…… "  
     
-    red " ==============================================================================================" 
+    red " ==================================================================================================" 
     
     yellow " 切记：进入脚本快捷方式 bash ~/multiOV6.sh "
     
-    blue " ==========================一、VPS状态调整选择及说明（更新中）==========================================" 
+    blue " ==================================================================================================" 
     
+    blue "一、VPS状态调整选择及说明（更新中)"
+
     blue " 1. 更新linux系统X86架构通用版内核至5.11版。自动断连后，请重新连接SSH "
     
     blue " 2. DNS64设置。自动断连后，请重新连接SSH（建议选择） "
@@ -174,15 +176,17 @@ function start_menu(){
     
     blue " 4. 检测奈飞Netflix是否解锁（启用WARP后可执行） " 
     
-    green " =========================二、WARP功能选择（更新中）=============================================="
+    green " =================================================================================================="
     
-    green " ----VPS原生IP数--------------添加WARP虚拟IP的位置-----------是否需要输入相关IP--------------"
+    green "二、WARP功能选择（更新中）"
+
+    green " ----VPS原生IP数--------------添加WARP虚拟IP的位置-----------是否需要输入相关IP--------------------"
     
     green " 5. 纯IPV6的VPS。            添加WARP虚拟IPV4+虚拟IPV6      (无须输入IP地址！)"
     
     green " 6. 纯IPV6的VPS。            添加WARP虚拟IPV4               (无须输入IP地址！)"
     
-    green " ------------------------------------------------------------------------------------------------"
+    green " --------------------------------------------------------------------------------------------------"
     
     green " 7. 永久关闭WARP功能。自动断连后，请重新连接SSH "
     
@@ -198,11 +202,13 @@ function start_menu(){
     
     green " 13. 查看VPS当前正在使用的IPV6地址 "
     
-    yellow " ==========================三、代理协议脚本选择（更新中）==========================================="
+    yellow " =================================================================================================="
     
+    yellow "三、代理协议脚本选择（更新中）"
+
     yellow " 14. 安装 Shadowsocks-Go "
     
-    yellow " ==============================================================================================="
+    yellow " =================================================================================================="
     
     red " 15. 重启VPS实例，请重新连接SSH "
     
@@ -358,7 +364,7 @@ fi
 
 apt update
 apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
-wget -N -6 https://cdn.jsdelivr.net/gh/YG-tsj/Oracle-warp/wgcf
+wget -N -6 https://cdn.jsdelivr.net/gh/xOS/Warp/wgcf
 cp wgcf /usr/local/bin/wgcf
 chmod +x /usr/local/bin/wgcf
 echo | wgcf register
@@ -390,7 +396,7 @@ if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then
 fi
 apt update
 apt -y --no-install-recommends install openresolv dnsutils wireguard-tools
-wget -N -6 https://cdn.jsdelivr.net/gh/YG-tsj/Oracle-warp/wgcf
+wget -N -6 https://cdn.jsdelivr.net/gh/xOS/Warp/wgcf
 cp wgcf /usr/local/bin/wgcf
 chmod +x /usr/local/bin/wgcf
 echo | wgcf register
@@ -413,11 +419,11 @@ systemctl status wg-quick@wgcf
 }
 
 function 6arm(){
-wget -6 -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/Oracle-warp/main/multiOV6.sh && chmod +x multiOV6.sh && ./multiOV6.sh
+wget -6 -N --no-check-certificate https://raw.githubusercontent.com/xOS/Warp/main/multiOV6.sh && chmod +x multiOV6.sh && ./multiOV6.sh
 }
 
 function 4arm(){
-wget -4 -N --no-check-certificate https://raw.githubusercontent.com/YG-tsj/Oracle-warp/main/multiOV6.sh && chmod +x multiOV6.sh && ./multiOV6.sh
+wget -4 -N --no-check-certificate https://raw.githubusercontent.com/xOS/Warp/main/multiOV6.sh && chmod +x multiOV6.sh && ./multiOV6.sh
 }
 
 #主菜单
@@ -430,8 +436,10 @@ function start_menu(){
     
     yellow " 切记：进入脚本快捷方式 bash ~/multiOV6.sh "
     
-    blue " ==========================一、VPS状态调整选择及说明（更新中）==========================================" 
+    blue " ====================================================================" 
     
+    blue "一、VPS状态调整选择及说明（更新中）"
+
     blue " 1. 更新linux系统ARM架构通用版内核至5.11版。自动断连后，请重新连接SSH "
     
     blue " 2. DNS64设置。自动断连后，请重新连接SSH（建议选择） "
@@ -440,8 +448,10 @@ function start_menu(){
     
     blue " 4. 检测奈飞Netflix是否解锁（启用WARP后可执行） " 
     
-    green " =========================二、WARP功能选择（更新中）=============================================="
+    green " ======================================================================="
     
+    green "二、WARP功能选择（更新中）"
+
     green " ----VPS原生IP数--------------添加WARP虚拟IP的位置-----------是否需要输入相关IP--------------"
     
     green " 5. 纯IPV6的VPS。            添加WARP虚拟IPV4+虚拟IPV6      (无须输入IP地址！)"
@@ -464,8 +474,10 @@ function start_menu(){
     
     green " 13. 查看VPS当前正在使用的IPV6地址 "
     
-    yellow " =====================三、支持ARM架构的代理协议脚本选择（更新中）==========================================="
+    yellow " ================================================================"
     
+    yellow "三、支持ARM架构的代理协议脚本选择（更新中）"
+
     yellow " 14.安装 Shadowsocks-Plugins "
     
     yellow " ==============================================================================================="
