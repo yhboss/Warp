@@ -1,12 +1,11 @@
-
-## 针对KVM架构VPS的WARP一键综合脚本
+# 针对KVM架构VPS的WARP一键综合脚本
 - [x] 支持自动识别X86与ARM的CPU架构
 - [x] 支持 纯IPV4  VPS
 - [x] 支持 IPV4+IPV6双栈VPS
 - [x] 支持 纯IPV6  VPS
 - [x] 目前仅支持 Ubuntu20.04系统！！！
 -----------------------------------------------------------------------------------------
-# 目录
+## 目录
 
 * [root一键脚本](#root一键脚本)
 
@@ -262,18 +261,30 @@ IPV4 VPS WARP专用分流配置文件(以下默认全局IPV4优先，IP、域名
 
 相关WARP进程命令
 手动临时关闭WARP网络接口
-
+```
 wg-quick down wgcf
+```
 手动开启WARP网络接口
-
+```
 wg-quick up wgcf
-启动systemctl enable wg-quick@wgcf
-
-开始systemctl start wg-quick@wgcf
-
-重启systemctl restart wg-quick@wgcf
-
-停止systemctl stop wg-quick@wgcf
-
-关闭systemctl disable wg-quick@wgcf
-
+```
+启动
+```
+systemctl enable wg-quick@wgcf
+```
+开始
+```
+systemctl start wg-quick@wgcf
+```
+重启
+```
+systemctl restart wg-quick@wgcf
+```
+停止
+```
+systemctl stop wg-quick@wgcf
+```
+关闭
+```
+systemctl disable wg-quick@wgcf
+```
